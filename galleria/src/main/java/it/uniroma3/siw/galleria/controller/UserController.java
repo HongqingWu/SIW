@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.galleria.service.UserService;
 
-import it.uniroma3.siw.galleria.model.User;
+import it.uniroma3.siw.galleria.model.Users;
+import it.uniroma3.siw.galleria.model.Users;
 
 @Controller
 public class UserController {
@@ -22,22 +23,22 @@ public class UserController {
 	private UserService userService; 
 
 	@ModelAttribute("user")
-	public User costructUser(){
-		return new User();
+	public Users costructUser(){
+		return new Users();
 	}
 	
 	
 	@GetMapping("/userRegistration")
-	public  String showForm(User user){
+	public  String showForm(Users user){
 		return "signUp";
 	}
 	@GetMapping("/login")
-	public String goToLoginPage(User user){
+	public String goToLoginPage(Users user){
 		return "signIn";
 	}
 	
 	@PostMapping("/userRegistration")
-	public String checkUserInfo(@Valid @ModelAttribute User user, 
+	public String checkUserInfo(@Valid @ModelAttribute Users user, 
 			BindingResult bindingResult, Model model) {
 
 		if(!bindingResult.hasErrors()){
@@ -59,7 +60,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/login")
-    public String checkUserLogin(@Valid @ModelAttribute User user, 
+    public String checkUserLogin(@Valid @ModelAttribute Users user, 
     									BindingResult bindingResult, Model model) {
     	
         if (bindingResult.hasErrors()) {

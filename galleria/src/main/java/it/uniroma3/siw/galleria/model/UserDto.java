@@ -2,16 +2,22 @@ package it.uniroma3.siw.galleria.model;
 
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import it.uniroma3.siw.galleria.validations.PasswordMatch;
 @PasswordMatch
+@Entity
 public class UserDto {
 
-
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	@NotNull
 	@Size(min=1)
 	private String firstName;

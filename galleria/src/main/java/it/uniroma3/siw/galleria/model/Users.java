@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Entity
-public class User {
+public class Users {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,7 +33,7 @@ public class User {
     private String role;
 
 
-	public User() {
+	public Users() {
 		this.role = "ROLE_USER" ;
 		
 		

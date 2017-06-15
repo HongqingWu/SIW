@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
 @Entity
 public class User {
 	@Id
@@ -14,20 +14,19 @@ public class User {
     private Long id;
 
     @NotNull
-    @Size(min=1)
+    @Pattern(regexp="/./", message="nome non valido")
     private String firstName;
 
     @NotNull
-    @Size(min=1)
+    @Pattern(regexp="/./", message="cognome non valido")
     private String lastName;
     
     @NotNull
-    
-    @Pattern(regexp=".+@.+\\.[a-z]+")
+    @Pattern(regexp=".+@.+\\.[a-z]+", message="email non valida ")
     private String email;
     
     @NotNull
-    @Size(min=1)
+    @Pattern(regexp="/./", message="password non valida")
     private String password;
     
     

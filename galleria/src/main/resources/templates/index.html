@@ -4,12 +4,12 @@
 	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 
+<title>Galleria HomePage</title>
 <link rel="stylesheet" type="text/css" media="all"
-	href="../static/css/layout.css" th:href="@{/css/layout.css}" />
-<link rel="stylesheet" type="text/css" media="all"
-	href="../static/css/style.css" th:href="@{/css/style.css}" />
+	href="../static/css/layout.css"
+	th:href="@{/css/layout.css}" />
 
-<title>Insert title here</title>
+
 </head>
 <body id="top">
 	<!-- ################################################################################################ -->
@@ -20,14 +20,21 @@
 			<!-- ################################################################################################ -->
 			<nav id="mainav" class="fl_left">
 				<ul class="clear">
-					<li class="active"><a href="index.html">Home</a></li>
+					<li class="active"><a th:href="@{/index}">Home</a></li>
 				</ul>
 			</nav>
 			<nav id="mainav" class="fl_right">
 				<ul class="clear">
-					<li class="active"><a href="/userRegistration">Sign Up</a></li>
+					<li class="active"><a href="/login">sign In</a></li>
+					<li class="active"><a href="/userRegistration">sign Up</a></li>
 				</ul>
+
 			</nav>
+
+
+
+
+
 		</div>
 	</div>
 	<!-- ################################################################################################ -->
@@ -46,38 +53,44 @@
 			<!-- ################################################################################################ -->
 		</header>
 	</div>
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- Top Background Image Wrapper -->
+	<div class="bgded"
+		style="background-image: url('../static/image/background_1.jpg');">
+		<!-- ################################################################################################ -->
+		<div class="wrapper">
+			<article id="pageintro" class="hoc clear">
+				<!-- ################################################################################################ -->
 
-	<form action="#" th:action="@{/login}" th:object="${user}"
-		method="post">
-		<div>
-			
-			<div>
-				<span th:text="#{label.email}">E-mail: </span> <span><input
-					type="text" th:field="*{email}" /></span> <span
-					th:if="${#fields.hasErrors('email')}" th:text="#{label.mandatory}">Error</span>
+				<h2 class="heading">Welcome in our space</h2>
 
-			</div>
-
-			<div>
-				<span th:text="#{label.password}">Password: </span> <span><input
-					type="password" th:field="*{password}" /></span> <span
-					th:if="${#fields.hasErrors('password')}"
-					th:text="#{label.mandatory}">Error</span>
-			</div>
-
-			
-			<div>
-				<span><button type="submit">Login</button></span>
-			</div>
+				<!-- ################################################################################################ -->
+			</article>
 		</div>
-	</form>
+		<!-- ################################################################################################ -->
+		<!-- ################################################################################################ -->
+		<!-- ################################################################################################ -->
 
+		<!-- ################################################################################################ -->
+	</div>
+	<!-- End Top Background Image Wrapper -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<div class="wrapper row3">
+		<main class="hoc container clear"> <!-- main body --> <!-- ################################################################################################ -->
+		<h2 class="heading">Some Information</h2>
+		<p class="btmspace-50">Our museum is located in the splendid city
+			of rome, near the basilica of san paolo, in addition to our physical
+			gallery we have a virtual gallery, we invite you to visit.</p>
 
-
-
-
-
-
+		<!-- ################################################################################################ -->
+		<!-- / main body -->
+		<div class="clear"></div>
+		</main>
+	</div>
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
@@ -133,5 +146,3 @@
 	<!-- / IE9 Placeholder Support -->
 </body>
 </html>
-
-

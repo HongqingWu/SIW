@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<meta charset="UTF-8">
+
 <title>Galleria HomePage</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="../static/styles/layout.css" rel="stylesheet" type="text/css" media="all">
-<link href="../static/styles/style.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" type="text/css" media="all"
+	href="../static/css/layout.css" th:href="@{/css/layout.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../static/css/style.css" th:href="@{/css/style.css}" />
 </head>
 <body id="top">
 	<!-- ################################################################################################ -->
@@ -19,13 +20,14 @@
 			<nav id="mainav" class="fl_left">
 				<ul class="clear">
 					<li class="active"><a href="index.html">Home</a></li>
-					<li class="active"><a href="/signIn.html">Sign In</a></li>
-
-
+				</ul>
+			</nav>
+			<nav id="mainav" class="fl_right">
+				<ul class="clear">
+					<li class="active"><a th:href="@{/login}">Sign In</a></li>
 
 				</ul>
 			</nav>
-
 		</div>
 	</div>
 	<!-- ################################################################################################ -->
@@ -44,50 +46,46 @@
 			<!-- ################################################################################################ -->
 		</header>
 	</div>
+
 	
-	<form action="#" th:action="@{/userDto}" th:object="${userDto}" method="post">
-            <div>
-                <div>
-                    <span th:text="#{label.firstName}">Name: </span>
-                    <span><input type="text" th:field="*{firstName}" /></span>
-                    <span th:if="${#fields.hasErrors('firstName')}" th:text="#{label.mandatory}">Error</span>
-                </div>
-                <div>
-                    <span th:text="#{label.lastName}">Last name: </span>
-                    <span><input type="text" th:field="*{lastName}" /></span>
-                    <span th:if="${#fields.hasErrors('lastName')}" th:text="#{label.mandatory}">Error</span>
-                </div>
-                <div>
-                    <span th:text="#{label.email}">E-mail: </span>
-                    <span><input type="text" th:field="*{email}" /></span>
-                    <span th:if="${#fields.hasErrors('email')}" th:text="#{label.mandatory}">Error</span>
-                    
-                </div>
-                
-                <div>
-                    <span th:text="#{label.password}">Password: </span>
-                    <span><input type="password" th:field="*{password}" /></span>
-                    <span th:if="${#fields.hasErrors('password')}" th:text="#{label.mandatory}">Error</span>
-                </div>
-                
-                 <div>
-                    <span th:text="#{label.matchingPassword}">Repeat Password: </span>
-                    <span><input type="password" th:field="*{matchingPassword}" /></span>
-                    <span th:if="${#fields.hasErrors('matchingPassword')}" th:text="#{label.mandatory}">Error</span>
-                </div>
-                
-                <div>
-                    <span><button type="submit">Submit</button></span>
-                </div>
-            </div>
-        </form>
-	
-	
-	
-	
-	
-	
-	
+        <form action="#" th:action="@{/userRegistration}" th:object="${user}" method="post">
+
+    <div>
+        <label th:text="#{label.firstName}">firstName</label>
+        <input type="text" th:field="*{firstName}"/>
+        <p th:each="error : ${#fields.errors('firstName')}"
+        
+          th:text="${error}">Validation error</p>
+    </div>
+      <div>
+        <label th:text="#{label.lastName}">lastName</label>
+        <input type="text" th:field="*{lastName}"/>
+        <p th:each="error : ${#fields.errors('lastName')}"
+        
+          th:text="${error}">Validation error</p>
+    </div>
+    <div>
+        <label th:text="#{label.email}">email</label>
+        <input type="email" th:field="*{email}"/>
+        <p th:each="error : ${#fields.errors('email')}"
+        
+          th:text="${error}">Validation error</p>
+    </div>
+    <div>
+        <label th:text="#{label.password}">password</label>
+        <input type="password" th:field="*{password}"/>
+        <p th:each="error : ${#fields.errors('password')}"
+        
+          th:text="${error}">Validation error</p>
+    </div>
+ 
+    <button type="submit" th:text="#{label.submit}">submit</button>
+</form>
+
+
+
+
+
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->

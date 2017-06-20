@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+
+<title>Galleria HomePage</title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../static/css/layout.css" th:href="@{/css/layout.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../static/css/style.css" th:href="@{/css/style.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../static/css/table.css" th:href="@{/css/table.css}" />
+
+</head>
+
+
+<body id="top">
+	<header>
+
+
+		<div sec:authorize="isAuthenticated()">
+			Benvenuto, <b sec:authentication="name">[generic user]</b>
+
+			<form action="/logout" method="post">
+				<input id="logout" type="submit" value="Logout" />
+			</form>
+		</div>
+
+	</header>
+
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<div class="wrapper row0">
+		<div id="topbar" class="hoc clear">
+			<!-- ################################################################################################ -->
+			<nav id="mainav" class="fl_left">
+				<ul class="clear">
+					<li class="active"><a href="/">Home</a></li>
+				</ul>
+			</nav>
+			<nav id="mainav" class="fl_right">
+				<ul class="clear">
+					<li class="active"><a sec:authorize="isAnonymous()"
+						href="/accedi">sign In</a></li>
+
+				</ul>
+			</nav>
+
+			<nav id="mainav" class="fl_right">
+				<ul class="clear" sec:authorize="hasRole('ROLE_ADMIN')">
+					<li class="active"><a th:href="@{/admin/newAutore}">inserisci
+							nuova artista </a></li>
+					<li class="active"><a th:href="@{/admin/newOpera}">inserisci
+							nuova opera </a></li>
+					<li class="active"><a th:href="@{/admin/visualizzaOpera}">visualizza
+							le opere </a></li>
+					<li class="active"><a th:href="@{/admin/visualizzaAutori}">visualizza
+							gli artisti </a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<div class="wrapper row1 colouredborder">
+		<header id="header" class="hoc clear">
+			<!-- ################################################################################################ -->
+			<div id="logo">
+				<i class="fa fa-4x fa-university"></i>
+				<h1>
+					<a href="/">San Paul Gallery</a>
+				</h1>
+				<p>Ars gratia artis</p>
+			</div>
+			<!-- ################################################################################################ -->
+		</header>
+	</div>
+
+	<!-- inizio view opera -->
+	<div th:if="${formViewOperaUtente}">
+
+		<a th:href="@{/utente/visualizzaOpera}"></a>
+
+
+
+
+		<div th:each="opera : ${opere}">
+			<ul>
+				<li>
+					<img th:src="${opera.linkImg}" style="width:300px;height:200px;"  />
+					<p th:text="${opera.titolo}">Title</p>
+					<p th:text="${opera.tecnica}">tecnica</p>
+					<p th:text="${opera.dimensione}">dimensione</p>
+					<p th:text="${opera.annoDiRealizzazione}">anno di realizzazione</p>
+					<p>
+						<a th:href="@{/utente/visualizzaAutore/} + ${opera.autore.id}"
+							th:text="${opera.autore.lastName}">autore </a>
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div th:if="${formCercaOpera}">
+		<div class = "classform">
+						<form action="#" th:action="@{/utente/cercaOpera}" method="post">
+							
+								
+									<label for="firstName"><span>First Name*:</span></label>
+									<div class="input">
+										<input size="20" id="firstName" name="firstName" type="text"
+											 required="required" />
+									</div>
+									
+								
+								<label for="lastName"><span>Last Name*:</span></label>
+									<div class="input">
+										<input size="20" id="lastName" name="lastName" type="text"
+											 required="required" />
+									</div>
+								<div class="actions">
+									<button  type="submit" class="btn btn-succes btn-large">Esegui Ricerca</button>
+								</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	</form>
+	</div>
+	
+	
+	
+	
+	<div th:if="${Opera}">
+	<div th:each="opera : ${opereCercate}">
+	
+			<ul>
+				<li>
+					<img th:src="${opera.linkImg}" style="width:300px;height:100px;"  />
+					<p th:text="${opera.titolo}">Title</p>
+					<p th:text="${opera.tecnica}">tecnica</p>
+					<p th:text="${opera.dimensione}">dimensione</p>
+					<p th:text="${opera.annoDiRealizzazione}">anno di realizzazione</p>
+					
+				</li>
+			</ul>
+		</div>
+	
+	<div th:if="${erroreOpera}">
+	</div>
+	
+	<p> autore non trovato </p>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	</div>
+
+
+
+
+
+	<!-- ##################################################################################### -->
+	<div class="bgded overlay"
+		style="background-image: url('images/demo/backgrounds/02.png');">
+		<div class="hoc container clear">
+			<!-- ################################################################################################ -->
+			<article class="one_third first">
+				<h2>Contact</h2>
+				<p>via Vito Voltera, 160</p>
+				<p>tel. 06/3284628</p>
+				<p>email. info@sanpaulmuseum.it</p>
+			</article>
+
+			<!-- ################################################################################################ -->
+		</div>
+	</div>
+
+	<!-- ################################################################################################ -->
+	<div class="wrapper row5">
+		<div id="copyright" class="hoc clear">
+			<!-- ################################################################################################ -->
+			<p class="fl_left">
+				Copyright &copy; 2015 - All Rights Reserved - <a href="#">Domain
+					Name</a>
+			</p>
+			<p class="fl_right">
+				Template by <a target="_blank" href="http://www.os-templates.com/"
+					title="Free Website Templates">OS Templates</a>
+			</p>
+			<!-- ################################################################################################ -->
+		</div>
+	</div>
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+	<!-- JAVASCRIPTS -->
+	<script src="layout/scripts/jquery.min.js"></script>
+	<script src="layout/scripts/jquery.backtotop.js"></script>
+	<script src="layout/scripts/jquery.mobilemenu.js"></script>
+	<!-- IE9 Placeholder Support -->
+	<script src="layout/scripts/jquery.placeholder.min.js"></script>
+	<!-- / IE9 Placeholder Support -->
+</body>
+</html>

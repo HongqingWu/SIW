@@ -1,45 +1,57 @@
 package it.uniroma3.siw.galleria.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Entity
+@Table(name = "user_account")
 public class Users {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotNull
-    @Pattern(regexp="/./", message="nome non valido")
-    private String firstName;
+	@NotNull
 
-    @NotNull
-    @Pattern(regexp="/./", message="cognome non valido")
-    private String lastName;
-    
-    @NotNull
-    @Pattern(regexp=".+@.+\\.[a-z]+", message="email non valida ")
-    private String email;
-    
-    @NotNull
-    @Pattern(regexp="/./", message="password non valida")
-    private String password;
-    
-    
-    private String role;
+	private String firstName;
 
+	@NotNull
+
+	private String lastName;
+
+	@NotNull
+	@Pattern(regexp=".+@.+\\.[a-z]+", message="email non valida ")
+	private String email;
+
+	@NotNull
+
+	private String password;
+
+
+
+
+	private boolean Enable;
 
 	public Users() {
-		this.role = "ROLE_USER" ;
-		
-		
+
+		this.Enable=false;
+
 	}
 
+	public boolean isEnabled() {
+		return Enable;
+	}
 
+	public void setEnabled(final boolean Enable) {
+		this.Enable = Enable;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -53,6 +65,8 @@ public class Users {
 	public String getFirstName() {
 		return firstName;
 	}
+
+
 
 
 	public void setFirstName(String firstName) {
@@ -89,15 +103,12 @@ public class Users {
 		this.password = password;
 	}
 
+	@Override
 
-	public String getRole() {
-		return role;
+	public String toString() {
+		return "Utente [id=" + id + "firstName " + firstName + "lastName " + lastName +", "
+				+ "email=" + email + ", password=" + password + ", enabled=" + Enable+  "]";
 	}
 
 
-	public void setRole(String role) {
-		this.role = role;
-	}
-    
-    
 }

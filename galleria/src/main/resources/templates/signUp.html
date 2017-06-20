@@ -24,7 +24,7 @@
 			</nav>
 			<nav id="mainav" class="fl_right">
 				<ul class="clear">
-					<li class="active"><a th:href="@{/login}">Sign In</a></li>
+					<li class="active"><a th:href="@{/accedi}">Sign In</a></li>
 
 				</ul>
 			</nav>
@@ -79,7 +79,7 @@
           th:text="${error}">Validation error</p>
     </div>
  
-    <button type="submit" th:text="#{label.submit}">submit</button>
+    <button type="submit" value = "userRegistration" th:text="#{label.submit}">submit</button>
 </form>
 
 

@@ -46,26 +46,23 @@
 			<!-- ################################################################################################ -->
 		</header>
 	</div>
-
-	<form action="#" th:action="@{/login}" th:object="${user}"
-		method="post">
+  <div class="text-error" th:if="${param.error}">Username o password non validi.</div>
+  <form action="#" th:action="@{/accedi}" th:object="${user}" method="post">
 		<div>
-			
-			<div>
-				<span th:text="#{label.email}">E-mail: </span> <span><input
-					type="text" th:field="*{email}" /></span> <span
-					th:if="${#fields.hasErrors('email')}" th:text="#{label.mandatory}">Error</span>
-
-			</div>
 
 			<div>
-				<span th:text="#{label.password}">Password: </span> <span><input
-					type="password" th:field="*{password}" /></span> <span
-					th:if="${#fields.hasErrors('password')}"
-					th:text="#{label.mandatory}">Error</span>
+				<label th:text="#{label.email}">email</label> <input type="email"
+					th:field="*{email}" />
+				<p th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation
+					error</p>
+			</div>
+			<div>
+				<label th:text="#{label.password}">password</label> <input
+					type="password" th:field="*{password}" />
+				<p th:each="error : ${#fields.errors('password')}"
+					th:text="${error}">Validation error</p>
 			</div>
 
-			
 			<div>
 				<span><button type="submit">Login</button></span>
 			</div>

@@ -1,10 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
+<title>Inserisci Opera </title>
+<link rel="stylesheet" type="text/css" media="all"
+	href="../static/css/layout.css" th:href="@{/css/layout.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../static/css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body id="top">
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<div class="wrapper row0">
+		<div id="topbar" class="hoc clear">
+			<!-- ################################################################################################ -->
+			<nav id="mainav" class="fl_left">
+				<ul class="clear">
+					<li class="active"><a href="index.html">Home</a></li>
+				</ul>
+			</nav>
+			<nav id="mainav" class="fl_right">
+				<ul class="clear">
+					<li class="active"><a th:href="@{/logout}">Logout</a></li>
+
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<div class="wrapper row1 colouredborder">
+		<header id="header" class="hoc clear">
+			<!-- ################################################################################################ -->
+			<div id="logo">
+				<i class="fa fa-4x fa-university"></i>
+				<h1>
+					<a href="index.html">San Paul Gallery </a>
+					<div>
+					AREA ADMIN
+					</div>
+				</h1>
+				<p>Ars gratia artis</p>
+			</div>
+			<!-- ################################################################################################ -->
+		</header>
+	</div>
+
+	
+        <form action="#" th:action="@{/operaRegistration}" th:object="${opera}" method="post">
+
+    <div>
+        <label th:text="#{label.titolo}">titolo</label>
+        <input type="text" th:field="*{titolo}"/>
+        <p th:each="error : ${#fields.errors('titolo')}"
+        
+          th:text="${error}">Validation error</p>
+    </div>
+      <div>
+        <label th:text="#{label.tecnica}">tecnica</label>
+        <input type="text" th:field="*{tecnica}"/>
+        <p th:each="error : ${#fields.errors('tecnica')}"
+        
+          th:text="${error}">Validation error</p>
+    </div>
+    <div>
+        <label th:text="#{label.dimensione}">dimensione</label>
+        <input type="text" th:field="*{dimensione}"/>
+        <p th:each="error : ${#fields.errors('dimensione')}"
+        
+          th:text="${error}">Validation error</p>
+    </div>
+    <div>
+        <label th:text="#{label.annoDiRealizzazione}">annoDiRealizzazione</label>
+        <input type="text" th:field="*{annoDiRealizzazione}"/>
+        <p th:each="error : ${#fields.errors('annoDiRealizzazione')}"
+        
+          th:text="${error}">Validation error</p>
+    </div>
+    <select multiple ="multiple" name ="#{label.Autore}">
+   		 <option th:each="artista: ${elencoArtisti}"
+   		  th:value="${artista.lastName}" >Artista
+   		  </option>
+  
+	</select>
+		
+       <h2><a th:href="@{/artistaRegistration}"> clicca qui per inserire un nuovo artista </a></h2>
+    
+	
+    
+    
+    
+ 
+ 
+    <button type="submit" value = "userRegistration" th:text="#{label.submit}">submit</button>
+</form>
+  
+
+
+
+
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<div class="bgded overlay"
+		style="background-image: url('images/demo/backgrounds/02.png');">
+		<div class="hoc container clear">
+			<!-- ################################################################################################ -->
+			<article class="one_third first">
+				<h2>Contact</h2>
+				<p>via Vito Voltera, 160</p>
+				<p>tel. 06/3284628</p>
+				<p>email. info@sanpaulmuseum.it</p>
+			</article>
+
+			<!-- ################################################################################################ -->
+		</div>
+	</div>
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<div class="wrapper row5">
+		<div id="copyright" class="hoc clear">
+			<!-- ################################################################################################ -->
+			<p class="fl_left">
+				Copyright &copy; 2015 - All Rights Reserved - <a href="#">Domain
+					Name</a>
+			</p>
+			<p class="fl_right">
+				Template by <a target="_blank" href="http://www.os-templates.com/"
+					title="Free Website Templates">OS Templates</a>
+			</p>
+			<!-- ################################################################################################ -->
+		</div>
+	</div>
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<!-- ################################################################################################ -->
+	<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+	<!-- JAVASCRIPTS -->
+	<script src="layout/scripts/jquery.min.js"></script>
+	<script src="layout/scripts/jquery.backtotop.js"></script>
+	<script src="layout/scripts/jquery.mobilemenu.js"></script>
+	<!-- IE9 Placeholder Support -->
+	<script src="layout/scripts/jquery.placeholder.min.js"></script>
+	<!-- / IE9 Placeholder Support -->
 </body>
 </html>
